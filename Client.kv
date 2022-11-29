@@ -1,0 +1,31 @@
+<AuthScreen>:
+    rows: 4
+    canvas:
+        Rectangle:
+            source: 'cover.jpg'
+            pos: self.pos
+            size: self.size
+    AnchorLayout:
+        size_hint: 1, 0.4
+        Label:
+            text: 'Добро пожаловать.'
+            font_size: '32sp'
+            
+    BoxLayout:
+        size_hint: 1, 0.1
+        Label:
+            text: 'Введите имя для авторизации:'
+            font_size: '22sp'
+    BoxLayout:
+        size_hint: 1, 0.3
+        spacing: 100
+        padding: [50, 0, 50, 220]
+        TextInput:
+            multiline: False
+    BoxLayout:
+        spacing: 100
+        padding: [100, 0, 100, 50]
+        size_hint: 1, 0.2
+        Button:
+            text: 'ТРАХНУТЬ'
+            background_color: (1.0, 0.0, 0.0, 1.0)
