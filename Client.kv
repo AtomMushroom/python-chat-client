@@ -27,5 +27,27 @@
         padding: [100, 0, 100, 50]
         size_hint: 1, 0.2
         Button:
-            text: 'ТРАХНУТЬ'
+            text: 'Авторизоваться'
+            background_color: (0.3, 0.2, 0.7, 1.0)
+
+<MainScreen>:
+    rows: 3
+    GridLayout:
+        size_hint: 1, 0.5
+        OneLineListItem:
+            text: "Single-line item"
+            disabled: True
+    BoxLayout:
+        size_hint: 1, 0.3
+        spacing: 100
+        padding: [50, 0, 50, 220]
+        TextInput:
+            multiline: False
+    BoxLayout:
+        spacing: 100
+        padding: [100, 0, 100, 50]
+        size_hint: 1, 0.2
+        Button:
+            text: 'Авторизоваться'
             background_color: (1.0, 0.0, 0.0, 1.0)
+    
