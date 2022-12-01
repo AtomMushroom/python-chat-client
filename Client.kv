@@ -21,9 +21,19 @@
         BoxLayout:
             size_hint: 1, 0.7
             spacing: 50
-            padding: [50, 0, 50, 130]
-            TextInput:
+            padding: [10, 0, 10, 130]
+            MDTextField:
+                id: ip
                 multiline: False
+                mode: "fill"
+                hint_text: "Введите IP сервера"
+            MDTextField:
+                id: log
+                multiline: False
+                mode: "fill"
+                hint_text: "Введите никнейм"
+                helper_text: "Пожалуйста, будьте вежливы!"
+                helper_text_mode: "on_focus"
         BoxLayout:
             spacing: 100
             padding: [100, 0, 100, 50]
@@ -43,17 +53,22 @@
                 text: "Типо сообщение"
                 disabled: True
     BoxLayout:
-        size_hint: 1, 0.3
-        spacing: 100
-        padding: [50, 0, 50, 220]
+        size_hint: 1, 0.5
+        spacing: 50
+        padding: [10, 110, 10, 270]
         TextInput:
             multiline: False
     BoxLayout:
-        spacing: 100
-        padding: [100, 0, 100, 50]
-        size_hint: 1, 0.2
+        orientation: "vertical"
+        spacing: 20
+        padding: [50, 0, 50, 50]
+        size_hint: 1, 0.3
         Button:
             text: 'Отправить сообщение'
+            background_color: (0.3, 0.2, 0.7, 1.0)
+            on_press: root.manager.current = 'auth'
+        Button:
+            text: 'Выйти'
             background_color: (1.0, 0.0, 0.0, 1.0)
             on_press: root.manager.current = 'auth'
     
