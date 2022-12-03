@@ -1,0 +1,29 @@
+<Main>:
+    canvas:
+        Rectangle:
+            source: 'cover.jpg'
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        rows: 4
+        AnchorLayout:
+            anchor_y: 'top'
+            Label:
+                text: 'Сервер для чата.'
+                font_size: '32sp'
+
+        AnchorLayout:
+            anchor_y: 'center'
+            Label:
+                id: lb
+                text: "ЗАЕБЛООО"
+                font_size: '22sp'
+        BoxLayout:
+            spacing: 100
+            padding: [100, 0, 100, 50]
+            size_hint: 1, 0.6
+            Button:
+                text: 'Запуск сервера'
+                background_color: (0.3, 0.2, 0.7, 1.0)
+                on_press: root.start(), root.listen()
