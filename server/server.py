@@ -12,7 +12,7 @@ Config.set("graphics", "resizeable", "0")
 Window.size = (480, 853)
 
 
-def listen():  # МЕТОД ДЛЯ ЕГОРА. МОЖНО НЕ СМОТРЕТЬ, НИГДЕ НЕ ИСПОЛЬЗУЕТСЯ.
+def listen():
     quit = False
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind((socket.gethostbyname(socket.gethostname()), 2222))

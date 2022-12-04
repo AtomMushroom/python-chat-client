@@ -44,15 +44,15 @@
                 #on_press: root.manager.current = 'menu'
                 on_press: root.switch()
 <MainScreen>:
-    #on_enter: self.start()
+    #on_enter: root.startup(root.s)
     GridLayout:
         rows: 3
         size_hint: 1, 1
         AnchorLayout:
             anchor_y: 'top'
-            OneLineListItem:
-                text: "Типо сообщение"
-                disabled: True
+            MDScrollView:
+                MDList:
+                    id: lst
     BoxLayout:
         size_hint: 1, 0.5
         spacing: 50
@@ -60,7 +60,7 @@
         TextInput:
             id: message
             multiline: False
-            on_text_validate: root.sendm(root.s)
+            on_text_validate: root.do_the_trick(root.s)
     BoxLayout:
         orientation: "vertical"
         spacing: 20
@@ -69,7 +69,7 @@
         Button:
             text: 'Отправить сообщение'
             background_color: (0.3, 0.2, 0.7, 1.0)
-            on_press: root.sendm(root.s)
+            on_press: root.do_the_trick(root.s)
         Button:
             text: 'Выйти'
             background_color: (1.0, 0.0, 0.0, 1.0)
