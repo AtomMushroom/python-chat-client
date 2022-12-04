@@ -16,6 +16,8 @@ def listen():
     quit = False
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind((socket.gethostbyname(socket.gethostname()), 2222))
+    s.settimeout(60)
+    #s.setblocking(False)
     print(f'Слушаю на {socket.gethostbyname(socket.gethostname())}:2222')
     clients = []
 
@@ -32,9 +34,9 @@ def listen():
             print(data.decode("utf-8"))
 
             for client in clients:
-                if addr != client:
-                    s.sendto(data, client)
-        except:
+                s.sendto(data, client)
+        except Exception as e:
+            print(e)
             print("\n[ Чтука сломалась ]")
             quit = True
             break

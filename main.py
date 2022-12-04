@@ -39,22 +39,25 @@ class AuthScreen(Screen): #Окно авторизации
         conn_man.set_nickname(str(self.ids.nickname.text))
         self.manager.current = "menu"
 class MainScreen(Screen): #Основное окно
-    def __init__(self, join=False, shutdown=False, **kw):
+    def __init__(self, join=False, **kw):
         super().__init__(**kw)
         self._join = join
-        self._shutdown = join
-
+    def get_self(self):
+        return self
     def receving(self, name, sock):  # Принимает пакеты от сервера и принтует в консоль
         try:
             data, addr = sock.recvfrom(1024)
             print(data.decode("utf-8"))
-            self.ids.lst.add_widget(OneLineListItem(text="Single-line item"))
+            self.ids.lst.add_widget(OneLineListItem(text=f"{data.decode('utf-8')}"))
         except Exception as e:
             print(e)
     shutdown = False
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind((host, port))
-    s.setblocking(False)
+    s.settimeout(2)
+    #mainT = threading.Thread(target=receving, args=(get_self(), "RECV", s), daemon=True)
+    #mainT.start()
+    #s.setblocking(False)
     def do_the_trick(self, s): #Отправляет сообщение
         message = self.ids.message.text
         s.sendto(f"Поц {conn_man.get_nickname()}: {message}".encode("utf-8"), (conn_man.get_ip(), 2222))
