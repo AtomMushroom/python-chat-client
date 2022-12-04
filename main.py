@@ -44,6 +44,8 @@ class MainScreen(Screen): #Основное окно
         self._join = join
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.mainT = threading.Thread(target=self.receving, args=("RECV", self.s), daemon=True)
+        self.s.bind((host, port))
+        self.s.settimeout(60)
     def receving(self, name, sock):  # Принимает пакеты от сервера и принтует в консоль
         try:
             data, addr = sock.recvfrom(1024)
@@ -53,8 +55,6 @@ class MainScreen(Screen): #Основное окно
             print(e)
     shutdown = False
     #s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    self.s.bind((host, port))
-    self.s.settimeout(2)
 
     def start_recv(self):
         self.mainT.start()
