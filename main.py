@@ -42,8 +42,8 @@ class MainScreen(Screen): #Основное окно
     def __init__(self, join=False, **kw):
         super().__init__(**kw)
         self._join = join
-    def get_self(self):
-        return self
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.mainT = threading.Thread(target=self.receving, args=("RECV", self.s), daemon=True)
     def receving(self, name, sock):  # Принимает пакеты от сервера и принтует в консоль
         try:
             data, addr = sock.recvfrom(1024)
@@ -52,10 +52,12 @@ class MainScreen(Screen): #Основное окно
         except Exception as e:
             print(e)
     shutdown = False
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.bind((host, port))
-    s.settimeout(2)
-    #mainT = threading.Thread(target=receving, args=(get_self(), "RECV", s), daemon=True)
+    #s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    self.s.bind((host, port))
+    self.s.settimeout(2)
+
+    def start_recv(self):
+        self.mainT.start()
     #mainT.start()
     #s.setblocking(False)
     def do_the_trick(self, s): #Отправляет сообщение
